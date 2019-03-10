@@ -1,5 +1,6 @@
 package ladysnake.lumen.common.entities;
 
+import ladysnake.lumen.common.Lumen;
 import ladysnake.lumen.common.config.LumenConfig;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -8,6 +9,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Loader;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -15,6 +17,22 @@ import java.util.Map;
 import java.util.Random;
 
 public class EntityFirefly extends AbstractLightOrb {
+    
+    private static boolean twilightForestInstalled;
+    private static int twilightForestDimId;
+    
+    static {
+        try {            
+            if (Loader.isModLoaded("twilightforest")) {
+                Class<?> tfConfigClass = Class.forName("twilightforest.TFConfig");
+                twilightForestDimId = (Integer) tfConfigClass.getField("dimensionID").get(null);
+                twilightForestInstalled = true;
+            }
+        } catch (Exception e) {
+            Lumen.LOGGER.warn("Can't find twilight forest config despite mod being installed", e);
+        }
+    }
+    
     // Attributes
     private float scaleModifier;
     float colorModifier;
@@ -107,9 +125,9 @@ public class EntityFirefly extends AbstractLightOrb {
 
     @Override
     public boolean getCanSpawnHere() {
-        // if night time, superior than sea level and not raining
+        // if night time, superior than sea level and not raining and not in Twilight Forest
         // spawn a number of fireflies between the config values
-        if (this.getClass() == EntityFirefly.class) return LumenConfig.spawnFireflies && !this.world.isDaytime() && !this.world.isRaining() && super.getCanSpawnHere();
+        if (this.getClass() == EntityFirefly.class) return LumenConfig.spawnFireflies && !this.world.isDaytime() && !this.world.isRaining() && !(twilightForestInstalled && this.world.provider.getDimension() == twilightForestDimId) && super.getCanSpawnHere();
         else return super.getCanSpawnHere();
     }
 
