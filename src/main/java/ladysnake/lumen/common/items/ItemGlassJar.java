@@ -1,5 +1,7 @@
 package ladysnake.lumen.common.items;
 
+//import com.zeitheron.hammercore.api.lighting.ColoredLight;
+//import com.zeitheron.hammercore.api.lighting.impl.IGlowingItem;
 import ladysnake.lumen.common.entities.EntityEmber;
 import ladysnake.lumen.common.entities.EntityFirefly;
 import ladysnake.lumen.common.entities.EntityLightningBug;
@@ -15,8 +17,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Optional;
 
-public class ItemGlassJar extends Item {
+@Optional.Interface(iface = "com.zeitheron.hammercore.api.lighting.impl.IGlowingItem", modid = "hammercore")
+public class ItemGlassJar extends Item /*implements IGlowingItem*/ {
     private String content;
 
     public ItemGlassJar() {
@@ -68,6 +72,8 @@ public class ItemGlassJar extends Item {
         return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
     }
 
+
+
     @Override
     public boolean itemInteractionForEntity(ItemStack stack, EntityPlayer playerIn, EntityLivingBase target, EnumHand hand) {
         // if empty jar and entity is a firefly, catching it
@@ -98,7 +104,12 @@ public class ItemGlassJar extends Item {
 
         return super.itemInteractionForEntity(stack, playerIn, target, hand);
     }
-/*
+
+    /*@Override
+    public ColoredLight produceColoredLight(Entity entity, ItemStack stack) {
+        return ColoredLight.builder().pos(entity.getPosition()).radius(type.getLightingRadius()).color(type.getLightingR(), type.getLightingG(), type.getLightingB(), 1.0f).build();
+    }
+
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         switch (this.content) {

@@ -2,6 +2,7 @@ package ladysnake.lumen.common.init;
 
 import ladysnake.lumen.client.renders.entities.*;
 import ladysnake.lumen.common.Lumen;
+import ladysnake.lumen.common.config.LumenConfig;
 import ladysnake.lumen.common.entities.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
@@ -80,21 +81,21 @@ public class ModEntities {
 
         // FIREFLIES
         reg.register(createEntry(EntityFirefly::new, "firefly", 64, true)
-                .spawn(EnumCreatureType.AMBIENT, 50, 0, 5, BiomeDictionary.getBiomes(BiomeDictionary.Type.WET))
-                .spawn(EnumCreatureType.AMBIENT, 50, 0, 5, BiomeDictionary.getBiomes(BiomeDictionary.Type.FOREST))
+                .spawn(EnumCreatureType.AMBIENT, 50, 0, LumenConfig.spawnAmountFireFlies, BiomeDictionary.getBiomes(BiomeDictionary.Type.WET))
+                .spawn(EnumCreatureType.AMBIENT, 50, 0, LumenConfig.spawnAmountFireFlies, BiomeDictionary.getBiomes(BiomeDictionary.Type.FOREST))
                 .build());
 
         reg.register(createEntry(EntityPsiFirefly::new, "psi_firefly", 64, true)
-                .spawn(EnumCreatureType.CREATURE, 50, 0, 1, BiomeDictionary.getBiomes(BiomeDictionary.Type.MAGICAL))
+                .spawn(EnumCreatureType.CREATURE, 50, 0, LumenConfig.spawnAmountPsiFireflies, BiomeDictionary.getBiomes(BiomeDictionary.Type.MAGICAL))
                 .build());
 
         reg.register(createEntry(EntityLightningBug::new, "lightning_bug", 64, true)
-                .spawn(EnumCreatureType.AMBIENT, 50, 0, 5, BiomeDictionary.getBiomes(BiomeDictionary.Type.WET))
-                .spawn(EnumCreatureType.AMBIENT, 50, 0, 5, BiomeDictionary.getBiomes(BiomeDictionary.Type.FOREST))
+                .spawn(EnumCreatureType.AMBIENT, 50, 0, LumenConfig.spawnAmountLightingBugs, BiomeDictionary.getBiomes(BiomeDictionary.Type.WET))
+                .spawn(EnumCreatureType.AMBIENT, 50, 0, LumenConfig.spawnAmountLightingBugs, BiomeDictionary.getBiomes(BiomeDictionary.Type.FOREST))
                 .build());
 
         reg.register(createEntry(EntityEmber::new, "ember", 64, true)
-                .spawn(EnumCreatureType.AMBIENT, 50, 0, 5, BiomeDictionary.getBiomes(BiomeDictionary.Type.NETHER))
+                .spawn(EnumCreatureType.AMBIENT, 50, 0, LumenConfig.spawnAmountEmbers, BiomeDictionary.getBiomes(BiomeDictionary.Type.NETHER))
                 .build());
 
         // COMPANION ORBS
@@ -103,14 +104,14 @@ public class ModEntities {
 
         // EXPERIMENTAL
         reg.register(createEntry(EntityWillOWisp::new, "will_o_wisp", 64, true)
-                .spawn(EnumCreatureType.CREATURE, 50, 1, 5, BiomeDictionary.getBiomes(BiomeDictionary.Type.SWAMP))
-                .spawn(EnumCreatureType.CREATURE, 50, 1, 5, BiomeDictionary.getBiomes(BiomeDictionary.Type.SPOOKY))
-                .spawn(EnumCreatureType.CREATURE, 50, 1, 5, BiomeDictionary.getBiomes(BiomeDictionary.Type.DEAD))
+                .spawn(EnumCreatureType.CREATURE, 50, 0, LumenConfig.spawnAmountWilloWisps, BiomeDictionary.getBiomes(BiomeDictionary.Type.SWAMP))
+                .spawn(EnumCreatureType.CREATURE, 50, 0, LumenConfig.spawnAmountWilloWisps, BiomeDictionary.getBiomes(BiomeDictionary.Type.SPOOKY))
+                .spawn(EnumCreatureType.CREATURE, 50, 0, LumenConfig.spawnAmountWilloWisps, BiomeDictionary.getBiomes(BiomeDictionary.Type.DEAD))
                 .build());
 
         reg.register(createEntry(EntityFaerie::new, "faerie", 64, true)
-                .spawn(EnumCreatureType.CREATURE, 50, 1, 5, BiomeDictionary.getBiomes(BiomeDictionary.Type.DENSE))
-                .spawn(EnumCreatureType.CREATURE, 50, 1, 5, BiomeDictionary.getBiomes(BiomeDictionary.Type.MAGICAL))
+                .spawn(EnumCreatureType.CREATURE, 50, 0, LumenConfig.spawnAmountFaeries, BiomeDictionary.getBiomes(BiomeDictionary.Type.DENSE))
+                .spawn(EnumCreatureType.CREATURE, 50, 0, LumenConfig.spawnAmountFaeries, BiomeDictionary.getBiomes(BiomeDictionary.Type.MAGICAL))
                 .build());
 
         reg.register(createEntry(EntityRadFlame::new, "rad_flame", 64, true).build());

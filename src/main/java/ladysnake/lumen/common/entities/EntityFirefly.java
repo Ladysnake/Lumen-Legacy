@@ -145,8 +145,6 @@ public class EntityFirefly extends AbstractLightOrb {
 
         if (this.despawnOnDaytime && this.canDespawn && this.alpha <= 0) this.setDead();
 
-        if (this.posY > 300) this.outOfWorld();
-
         if (!this.world.isRemote && !this.isDead) {
             this.targetChangeCooldown -= (this.getPositionVector().squareDistanceTo(lastTickPosX, lastTickPosY, lastTickPosZ) < 0.0125) ? 10 : 1;
 

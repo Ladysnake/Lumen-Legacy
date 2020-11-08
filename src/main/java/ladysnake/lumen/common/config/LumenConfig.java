@@ -30,6 +30,37 @@ public class LumenConfig {
     @Config.Comment("Enable faerie spawn")
     public static boolean spawnFaeries = true;
 
+    //Spawn Amounts
+    @Config.Comment("Fireflies spawn amount")
+    @Config.RequiresMcRestart()
+    @Config.RangeInt(max = 300, min = 5)
+    public static int spawnAmountFireFlies = 40;
+
+    @Config.Comment("Psi Fireflies spawn amount")
+    @Config.RequiresMcRestart()
+    @Config.RangeInt(max = 300, min = 5)
+    public static int spawnAmountPsiFireflies = 40;
+
+    @Config.Comment("Lighting Bugs spawn amount")
+    @Config.RequiresMcRestart()
+    @Config.RangeInt(max = 300, min = 5)
+    public static int spawnAmountLightingBugs = 40;
+
+    @Config.Comment("Embers spawn amount")
+    @Config.RequiresMcRestart()
+    @Config.RangeInt(max = 300, min = 5)
+    public static int spawnAmountEmbers = 40;
+
+    @Config.Comment("Will o' Wisps spawn amount")
+    @Config.RequiresMcRestart()
+    @Config.RangeInt(max = 300, min = 5)
+    public static int spawnAmountWilloWisps = 40;
+
+    @Config.Comment("Faeries spawn amount")
+    @Config.RequiresMcRestart()
+    @Config.RangeInt(max = 300, min = 5)
+    public static int spawnAmountFaeries = 40;
+
     @SubscribeEvent
     public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
         if (event.getModID().equals(Lumen.MOD_ID)) {

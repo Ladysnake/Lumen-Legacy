@@ -1,6 +1,7 @@
 package ladysnake.lumen.common.entities;
 
-import elucent.albedo.lighting.ILightProvider;
+import com.zeitheron.hammercore.api.lighting.ColoredLight;
+import com.zeitheron.hammercore.api.lighting.impl.IGlowingEntity;
 import ladysnake.lumen.common.config.LumenConfig;
 import net.minecraft.entity.MoverType;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,8 +13,8 @@ import net.minecraftforge.fml.common.Optional;
 
 import javax.annotation.Nonnull;
 
-@Optional.Interface(iface = "elucent.albedo.lighting.ILightProvider", modid = "albedo", striprefs = true)
-public class EntityWillOWisp extends AbstractLightOrb implements ILightProvider {
+@Optional.Interface(iface = "com.zeitheron.hammercore.api.lighting.impl.IGlowingEntity", modid = "hammercore")
+public class EntityWillOWisp extends AbstractLightOrb implements IGlowingEntity {
     // Constructors
     public EntityWillOWisp(World world) {
         super(world);
@@ -62,8 +63,6 @@ public class EntityWillOWisp extends AbstractLightOrb implements ILightProvider 
     @Override
     public void onUpdate() {
         super.onUpdate();
-
-        if (this.posY > 300) this.outOfWorld();
 
         if (!this.world.isRemote && !this.isDead) {
             this.targetChangeCooldown -= (this.getPositionVector().squareDistanceTo(lastTickPosX, lastTickPosY, lastTickPosZ) < 0.0125) ? 10 : 1;
@@ -117,8 +116,8 @@ public class EntityWillOWisp extends AbstractLightOrb implements ILightProvider 
     }
 
     @Override
-    public elucent.albedo.lighting.Light provideLight() {
-        return elucent.albedo.lighting.Light.builder().pos(this).radius(10).color(30, 200, 250, 0.01f).build();
-    }
+    public ColoredLight produceColoredLight(float partialTicks) {
+        return ColoredLight.builder().pos(this).radius(10).color(30, 200, 250, 1.0f).build();
 
+    }
 }

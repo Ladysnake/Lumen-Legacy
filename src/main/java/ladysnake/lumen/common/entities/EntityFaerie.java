@@ -1,12 +1,13 @@
 package ladysnake.lumen.common.entities;
 
-import elucent.albedo.lighting.ILightProvider;
+import com.zeitheron.hammercore.api.lighting.ColoredLight;
+import com.zeitheron.hammercore.api.lighting.impl.IGlowingEntity;
 import ladysnake.lumen.common.config.LumenConfig;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
 
-@Optional.Interface(iface = "elucent.albedo.lighting.ILightProvider", modid = "albedo", striprefs = true)
-public class EntityFaerie extends EntityWillOWisp implements ILightProvider {
+@Optional.Interface(iface = "com.zeitheron.hammercore.api.lighting.impl.IGlowingEntity", modid = "hammercore")
+public class EntityFaerie extends EntityWillOWisp implements IGlowingEntity {
 
     // Constructors
     public EntityFaerie(World world) {
@@ -27,8 +28,8 @@ public class EntityFaerie extends EntityWillOWisp implements ILightProvider {
 
     // Behaviour
     @Override
-    public elucent.albedo.lighting.Light provideLight() {
-        return elucent.albedo.lighting.Light.builder().pos(this).radius(6).color(250, 80, 170, 0.01f).build();
-    }
+    public ColoredLight produceColoredLight(float partialTicks) {
+        return ColoredLight.builder().pos(this).radius(6).color(250, 80, 170, 1.0f).build();
 
+    }
 }

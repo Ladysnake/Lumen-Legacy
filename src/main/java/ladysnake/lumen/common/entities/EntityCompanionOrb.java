@@ -1,7 +1,7 @@
 package ladysnake.lumen.common.entities;
 
-import elucent.albedo.lighting.ILightProvider;
-import elucent.albedo.lighting.Light;
+import com.zeitheron.hammercore.api.lighting.impl.IGlowingEntity;
+import com.zeitheron.hammercore.api.lighting.ColoredLight;
 import ladysnake.lumen.common.Lumen;
 import ladysnake.lumen.common.init.ModEntities;
 import net.minecraft.entity.Entity;
@@ -22,8 +22,8 @@ import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.UUID;
 
-@Optional.Interface(iface = "elucent.albedo.lighting.ILightProvider", modid = "albedo", striprefs = true)
-public class EntityCompanionOrb extends AbstractLightOrb implements ILightProvider {
+@Optional.Interface(iface = "com.zeitheron.hammercore.api.lighting.impl.IGlowingEntity", modid = "hammercore")
+public class EntityCompanionOrb extends AbstractLightOrb implements IGlowingEntity {
     // Attributes
     private UUID ownerUUID;
     private static final DataParameter<Integer> TYPE = EntityDataManager.createKey(EntityCompanionOrb.class, DataSerializers.VARINT);
@@ -147,9 +147,9 @@ public class EntityCompanionOrb extends AbstractLightOrb implements ILightProvid
     }
 
     @Override
-    public Light provideLight() {
+    public ColoredLight produceColoredLight(float partialTicks) {
         ModEntities.Companion type = ModEntities.Companion.values()[this.getDataManager().get(TYPE)];
-        return Light.builder().pos(this).radius(type.getLightingRadius()).color(type.getLightingR(), type.getLightingG(), type.getLightingB(), 0.01f).build();
-    }
+        return ColoredLight.builder().pos(this).radius(type.getLightingRadius()).color(type.getLightingR(), type.getLightingG(), type.getLightingB(), 1.0f).build();
 
+    }
 }
