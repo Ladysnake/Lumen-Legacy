@@ -29,7 +29,7 @@ public class EntityRadFlame extends EntityWillOWisp implements IGlowingEntity {
     // Behaviour
     @Override
     public ColoredLight produceColoredLight(float partialTicks) {
-        return ColoredLight.builder().pos(this).radius(10).color(255, 0, 50, 1.0f).build();
+        return ColoredLight.builder().pos(this).radius(10.0f).color(1.0f, 0.0f, 0.2f, 1.0f).build();
 
     }
 

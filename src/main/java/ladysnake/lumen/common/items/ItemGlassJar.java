@@ -1,12 +1,13 @@
 package ladysnake.lumen.common.items;
 
-//import com.zeitheron.hammercore.api.lighting.ColoredLight;
-//import com.zeitheron.hammercore.api.lighting.impl.IGlowingItem;
+import com.zeitheron.hammercore.api.lighting.ColoredLight;
+import com.zeitheron.hammercore.api.lighting.impl.IGlowingItem;
 import ladysnake.lumen.common.entities.EntityEmber;
 import ladysnake.lumen.common.entities.EntityFirefly;
 import ladysnake.lumen.common.entities.EntityLightningBug;
 import ladysnake.lumen.common.entities.EntityPsiFirefly;
 import ladysnake.lumen.common.init.ModItems;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.Optional;
 
 @Optional.Interface(iface = "com.zeitheron.hammercore.api.lighting.impl.IGlowingItem", modid = "hammercore")
-public class ItemGlassJar extends Item /*implements IGlowingItem*/ {
+public class ItemGlassJar extends Item implements IGlowingItem {
     private String content;
 
     public ItemGlassJar() {
@@ -105,11 +106,23 @@ public class ItemGlassJar extends Item /*implements IGlowingItem*/ {
         return super.itemInteractionForEntity(stack, playerIn, target, hand);
     }
 
-    /*@Override
+    @Override
     public ColoredLight produceColoredLight(Entity entity, ItemStack stack) {
-        return ColoredLight.builder().pos(entity.getPosition()).radius(type.getLightingRadius()).color(type.getLightingR(), type.getLightingG(), type.getLightingB(), 1.0f).build();
+        if(stack.getItem() == ModItems.FIREFLY_IN_A_JAR){
+            return ColoredLight.builder().pos(entity.getPosition()).radius(10.0f).color(0.8f, 0.8f, 0.8f, 1.0f).build();
+        }
+        if(stack.getItem() == ModItems.PSI_FIREFLY_IN_A_JAR){
+            return ColoredLight.builder().pos(entity.getPosition()).radius(10.0f).color(0.6f, 0.2f, 0.9f, 1.0f).build();
+        }
+        if(stack.getItem() == ModItems.LIGHTNING_BUG_IN_A_JAR){
+            return ColoredLight.builder().pos(entity.getPosition()).radius(10.0f).color(0.6f, 0.8f, 0.6f, 1.0f).build();
+        }
+        if(stack.getItem() == ModItems.EMBER_IN_A_JAR){
+            return ColoredLight.builder().pos(entity.getPosition()).radius(10.0f).color(0.8f, 0.3f, 0.0f, 1.0f).build();
+        }
+        return null;
     }
-
+/*
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         switch (this.content) {

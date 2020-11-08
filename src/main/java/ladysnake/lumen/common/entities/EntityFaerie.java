@@ -29,7 +29,7 @@ public class EntityFaerie extends EntityWillOWisp implements IGlowingEntity {
     // Behaviour
     @Override
     public ColoredLight produceColoredLight(float partialTicks) {
-        return ColoredLight.builder().pos(this).radius(6).color(250, 80, 170, 1.0f).build();
+        return ColoredLight.builder().pos(this).radius(6.0f).color(0.9f, 0.3f, 0.7f, 1.0f).build();
 
     }
 }

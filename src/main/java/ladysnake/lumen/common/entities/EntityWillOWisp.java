@@ -117,7 +117,7 @@ public class EntityWillOWisp extends AbstractLightOrb implements IGlowingEntity 
 
     @Override
     public ColoredLight produceColoredLight(float partialTicks) {
-        return ColoredLight.builder().pos(this).radius(10).color(30, 200, 250, 1.0f).build();
+        return ColoredLight.builder().pos(this).radius(10.0f).color(0.2f, 0.78f, 0.9f, 1.0f).build();
 
     }
 }
